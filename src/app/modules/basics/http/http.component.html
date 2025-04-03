@@ -1,1 +1,12 @@
 <p>http works!</p>
+
+<div *ngIf="pokemon; else loading">
+  <p>pokemon: {{ pokemon.name }}</p>
+  <img [src]="pokemon.sprites.front_default" alt="" srcset="" />
+</div>
+
+<div *ngIf="pokemonType; else loading">
+  <p>pokemon damage relation: {{ pokemonType.damage_relations | json }}</p>
+</div>
+
+<ng-template #loading> loading...</ng-template>
