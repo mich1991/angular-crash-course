@@ -1,1 +1,35 @@
-<p>directives works!</p>
+<h2 appClickColor>Click Color example, Click me!</h2>
+<hr />
+<h2>Structural Directives example</h2>
+<div>
+  <h3 *appShowEven="4">This will be shown because 4 is even</h3>
+  <h3 *appShowEven="3">This will not be shown because 3 is odd</h3>
+
+  <div>
+    <button (click)="increaseCounter()">Increase Counter</button>
+    <p>{{ counter }}</p>
+  </div>
+  <h3 *appShowEven="counter">
+    This will be shown because {{ counter }} is even
+  </h3>
+</div>
+<hr />
+
+<p>
+  In Angular, the * symbol before some structural directives (like *ngIf,
+  *ngFor, etc.) is a shorthand that indicates the directive is a structural
+  directive. Structural directives are responsible for modifying the DOM layout
+  by adding, removing, or manipulating elements.
+</p>
+<!-- 
+<h4>Shorthand</h4>
+<div *ngIf="isVisible">
+  <p>This content is conditionally rendered based on isVisible.</p>
+</div>
+<h4>Behind the scenes</h4>
+<ng-template [ngIf]="isVisible">
+  <div>
+    <p>This content is conditionally rendered based on isVisible.</p>
+  </div>
+</ng-template>
+ -->
