@@ -1,1 +1,22 @@
-<p>data-binding works!</p>
+<hr />
+<h2>Interpolation for display text</h2>
+<p>{{ messageText }}</p>
+<hr />
+<h2>Data binding for binding property with child component property</h2>
+<button [disabled]="isDisabled" [style.color]="isDisabled ? 'red' : 'black'">
+  I can be disabled
+</button>
+<hr />
+<h2>
+  Event binding allows you to listen for events and respond to them by calling a
+  method in the component
+</h2>
+<button (click)="toggleButton()">enable/disable previous button</button>
+<hr />
+<h2>
+  Two-way data binding allows data to flow in both directions: from the
+  component to the view, and from the view to the component.
+</h2>
+<input [(ngModel)]="username" placeholder="Enter your name" />
+<p>Hello, {{ username }}!</p>
+<button (click)="clearUserName()">clear user name</button>

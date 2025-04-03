@@ -1,1 +1,69 @@
 <p>forms works!</p>
+<h2>Old way - ngModel - small forms</h2>
+<div>
+  <label for="username">Username (min 3 characters):</label>
+  <input
+    type="text"
+    id="username"
+    [(ngModel)]="username"
+    #usernameModel="ngModel"
+    minlength="3"
+    required
+  />
+  <div *ngIf="usernameModel.invalid && usernameModel.touched">
+    <small *ngIf="usernameModel.errors?.['minlength']">
+      Username must be at least 3 characters long.
+    </small>
+    <small *ngIf="usernameModel.errors?.['required']">
+      Username is required.
+    </small>
+  </div>
+</div>
+<div>
+  <p>Your username: {{ username }}</p>
+</div>
+
+<!-- Submit Button, enabled only when the form is valid -->
+<button [disabled]="usernameModel.invalid">Submit</button>
+<hr />
+<!-- Reactive Forms -->
+<h2>Reactive Forms. For bigger forms and better controls/validation</h2>
+<div>
+  <form [formGroup]="usernameForm" (ngSubmit)="onSubmit()">
+    <label for="username">Username (min 3 characters):</label>
+    <input type="text" id="username" formControlName="username" />
+
+    <!-- Error Messages -->
+    <div *ngIf="usernameControl?.invalid && usernameControl?.touched">
+      <small *ngIf="usernameControl?.errors?.['minlength']">
+        Username must be at least 3 characters long.
+      </small>
+      <small *ngIf="usernameControl?.errors?.['required']">
+        Username is required.
+      </small>
+    </div>
+    <div>
+      <label for="age">Age (required):</label>
+      <input type="number" id="age" formControlName="age" />
+      <!-- Error Messages -->
+      <div
+        *ngIf="
+          usernameForm.get('age')?.invalid && usernameForm.get('age')?.touched
+        "
+      >
+        <small *ngIf="usernameForm.get('age')?.errors?.['required']">
+          Age is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button type="submit" [disabled]="usernameForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div>
+  <p>Your username: {{ usernameForm.value.username }}</p>
+</div>
